@@ -8,6 +8,7 @@ TagManager:
   - Target
   - Wall
   - Door
+  - Floating Target
   layers:
   - Default
   - TransparentFX
