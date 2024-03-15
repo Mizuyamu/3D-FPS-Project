@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Door
   - Floating Target
+  - Bullet
   layers:
   - Default
   - TransparentFX

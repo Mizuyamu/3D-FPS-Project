@@ -26,10 +26,10 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    void OnTriggerEnter(Collider other)
+    
+    void OnCollisionEnter(Collision other)
     {
         Destroy(this.gameObject);
     }
-}
+}   
 
