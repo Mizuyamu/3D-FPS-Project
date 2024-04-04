@@ -13,13 +13,19 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         int floatingTargetAmount = GameObject.FindGameObjectsWithTag("Floating Target").Length;
-        int standingTargetAmount = GameObject.FindGameObjectsWithTag("Targets").Length;
+        int standingTargetAmount = GameObject.FindGameObjectsWithTag("Target").Length;
         _targetAmount = floatingTargetAmount + standingTargetAmount;
-        targetText.text = "Targets: " + _targetAmount.ToString();
+        targetText.text = "Target: " + _targetAmount.ToString();
     }
 
     public void UpdateTargetAmount(int amount)
     {
         _targetAmount += amount;
+        targetText.text = "Target: " + _targetAmount.ToString();
+
+        if(_targetAmount <= 0)
+        {
+            GameObject.Find("Game Manager").GetComponent<Timer>().EndGameTimer();
+        }
     }
 }
