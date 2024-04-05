@@ -11,7 +11,7 @@ public class Timer : MonoBehaviour
    
     void Start()
     {
-        StartGameTimer();
+        //StartGameTimer();
     }
 
     // Update is called once per frame
@@ -28,6 +28,7 @@ public class Timer : MonoBehaviour
             {
                 timeRemaining = 0;
                 _isTimerRunning = false;
+                GameObject.Find("Game Manager").GetComponent<CrossFade>().FadeIn();
             }
         }
     }
