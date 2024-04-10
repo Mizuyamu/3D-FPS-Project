@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 1f;
-    public float jumpForce =10f;
+    public float jumpForce = 10f;
     public float gravityModifier = 1f;
-    public float mouseSenstivity = 1f;
+    public float mouseSensitivity = 1f;
     public GameObject bullet;
     public Transform firePoint;
     public Transform theCamera;
     public Transform groundCheckpoint;
-    public LayerMask WhatIsGround; 
+    public LayerMask whatIsGround;
     private bool _canPlayerJump;
     private Vector3 _moveInput;
     private CharacterController _characterController;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Store the y velocity
-        float yVelocity = _moveInput.y;
+        float yVeclocity = _moveInput.y;
 
         //Player movement
         //_moveInput.x = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
@@ -40,17 +40,17 @@ public class PlayerController : MonoBehaviour
         _moveInput =(forwardDirection + horizontalDirection).normalized;
         _moveInput *= moveSpeed;
 
-        //Player Jumping setup
-        _moveInput.y = yVelocity;
-        _moveInput.y += Physics.gravity.y * gravityModifier * Time.deltaTime; 
+        //Player jumping setup
+        _moveInput.y = yVeclocity;
+        _moveInput.y += Physics.gravity.y * gravityModifier * Time.deltaTime;
 
         if(_characterController.isGrounded)
         {
             _moveInput.y = Physics.gravity.y * gravityModifier * Time.deltaTime;
         }
 
-        //Checking to se if player can jump
-        _canPlayerJump = Physics.OverlapSphere(groundCheckpoint.position, 0.50f, WhatIsGround).Length >0;
+        //Checking to see if player can jump
+        _canPlayerJump = Physics.OverlapSphere(groundCheckpoint.position, 0.50f, whatIsGround).Length > 0;
 
         //Apply a jump force to player
         if(Input.GetKeyDown(KeyCode.Space) && _canPlayerJump)
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         _characterController.Move(_moveInput * Time.deltaTime);
 
         //Control camera rotation
-        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw ("Mouse Y")) * mouseSenstivity;
+        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
 
         //Player Rotation
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         //Camera Rotation
         theCamera.rotation = Quaternion.Euler(theCamera.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
-        //Handle Shootin
+        //Handle Shooting
         if(Input.GetMouseButtonDown(0) && _ammo.GetAmmoAmount() > 0)
         {
             RaycastHit hit;
@@ -83,11 +83,20 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                    firePoint.LookAt(theCamera.position + (theCamera.forward * 30f));
+                firePoint.LookAt(theCamera.position + (theCamera.forward * 30f));
             }
-            
+                
             Instantiate(bullet, firePoint.position, firePoint.rotation);
             _ammo.RemoveAmmo();
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Ammo Box"))
+        {
+            _ammo.AddAmmo();
+            other.gameObject.SetActive(false);
         }
     }
 }

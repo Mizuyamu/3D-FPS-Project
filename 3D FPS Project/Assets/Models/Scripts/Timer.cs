@@ -6,9 +6,11 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     public float timeRemaining = 60f;
-    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI timerText;
     private bool _isTimerRunning = false;
-   
+
+
+    // Start is called before the first frame update
     void Start()
     {
         //StartGameTimer();
@@ -17,9 +19,9 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_isTimerRunning)
+        if(_isTimerRunning)
         {
-            if (timeRemaining > 0)
+            if(timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
                 DisplayGameTimer(timeRemaining);
@@ -33,7 +35,7 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void StartGameTimer ()
+    public void StartGameTimer()
     {
         _isTimerRunning = true;
     }
@@ -42,13 +44,14 @@ public class Timer : MonoBehaviour
     {
         _isTimerRunning = false;
     }
-     private void DisplayGameTimer(float timeToDisplay)
+
+    private void DisplayGameTimer(float timeToDisplay)
     {
         timeToDisplay += 1;
 
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }

@@ -3744,8 +3744,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetText: {fileID: 1986460411}
-  youWonScene: 
-  youLostScene: 
 --- !u!4 &719234643
 Transform:
   m_ObjectHideFlags: 0
@@ -3774,7 +3772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRemaining: 60
-  timerText: {fileID: 1393700366}
+  timeText: {fileID: 1393700366}
 --- !u!114 &719234646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8746,14 +8744,14 @@ MonoBehaviour:
   moveSpeed: 8
   jumpForce: 10
   gravityModifier: 1
-  mouseSensitivity: 1
+  mouseSenstivity: 3
   bullet: {fileID: 9096687973562477043, guid: 677d6d84b0c3c42d888649e52308f681, type: 3}
   firePoint: {fileID: 1988479579}
   theCamera: {fileID: 146320884}
   groundCheckpoint: {fileID: 653556867}
-  whatIsGround:
+  WhatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!143 &1693095736
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11891,14 +11889,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 675932622}
     m_Modifications:
-    - target: {fileID: 1707862644856395506, guid: 4d12337205dc3405fbc158ec9c780e4b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.122
-      objectReference: {fileID: 0}
-    - target: {fileID: 1707862644856395506, guid: 4d12337205dc3405fbc158ec9c780e4b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.831
-      objectReference: {fileID: 0}
     - target: {fileID: 8177449738711983886, guid: 4d12337205dc3405fbc158ec9c780e4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.07
