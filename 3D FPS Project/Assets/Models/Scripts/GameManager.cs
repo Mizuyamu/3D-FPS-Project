@@ -30,7 +30,24 @@ public class GameManager : MonoBehaviour
         {
             GameObject.Find("Game Manager").GetComponent<Timer>().EndGameTimer();
             GameObject.Find("Game Manager").GetComponent<CrossFade>().FadeIn();
-            SceneManager.LoadScene(youWonScene);
+            StartCoroutine(MovetoWinScene());
         }
+    }
+
+    public void GameIsOver()
+    {
+        StartCoroutine(MoveToLostScene());
+    }
+
+    private IEnumerator MovetoWinScene()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(youWonScene);
+    }
+
+    private IEnumerator MoveToLostScene()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(youLostScene);
     }
 }
