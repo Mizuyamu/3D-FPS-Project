@@ -8,6 +8,11 @@ public class Menus : MonoBehaviour
 
     public string levelOne;
 
+    void Start()
+    {
+      Cursor.lockState = CursorLockMode.None;
+    }
+
    public void OnPlayButtonPressed()
    {
      if(levelOne == "Level One")
